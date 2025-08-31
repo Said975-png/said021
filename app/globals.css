@@ -3400,12 +3400,6 @@ body {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.chat-input:focus {
-  border-color: #0ea5e9;
-  background: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1);
-}
-
 .chat-send-button {
   width: 2.5rem;
   height: 2.5rem;
