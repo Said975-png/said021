@@ -73,6 +73,22 @@ export default function JarvisChat() {
     }
   }, [isOpen, messages])
 
+  // Обработчик фокуса на поле ввода для мобильных устройств
+  const handleInputFocus = () => {
+    // Прокрутка к последнему сообщению при фокусе (для мобильных)
+    setTimeout(() => {
+      scrollToBottom()
+    }, 300) // Задержка для появления клавиатуры
+  }
+
+  // Обработчик потери фокуса
+  const handleInputBlur = () => {
+    // Прокрутка к последнему сообщению при потере фокуса
+    setTimeout(() => {
+      scrollToBottom()
+    }, 100)
+  }
+
   // Инициализация Speech Recognition
   useEffect(() => {
     console.log('Initializing Speech Recognition...')
@@ -149,7 +165,7 @@ export default function JarvisChat() {
             break
           case 'not-allowed':
             console.log('Microphone access denied')
-            alert('Нужно разрешить доступ к микрофону в настройках браузера')
+            alert('Нужно разрешит�� доступ к микрофону в настройках браузера')
             break
           case 'no-speech':
             console.log('No speech detected - continuing to listen')
