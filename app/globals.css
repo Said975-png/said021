@@ -3407,32 +3407,33 @@ body {
 }
 
 .chat-send-button {
-  width: 3rem;
-  height: 3rem;
-  background: linear-gradient(135deg, #0ea5e9, #06b6d4);
+  width: 2.5rem;
+  height: 2.5rem;
+  background: transparent;
   border: none;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
+  transition: all 0.2s ease;
+  color: #0ea5e9;
 }
 
 .chat-send-button:hover:not(:disabled) {
-  transform: scale(1.05);
-  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+  background: rgba(14, 165, 233, 0.1);
+  color: #06b6d4;
 }
 
 .chat-send-button:disabled {
-  opacity: 0.5;
+  opacity: 0.4;
   cursor: not-allowed;
+  color: rgba(255, 255, 255, 0.3);
 }
 
 .chat-send-icon {
-  width: 1.25rem;
-  height: 1.25rem;
-  color: white;
+  width: 1.125rem;
+  height: 1.125rem;
   stroke-width: 2;
 }
 
@@ -3718,7 +3719,7 @@ body {
   }
 
   .chat-input:focus {
-    /* Убир��ем трансформации при фокусе */
+    /* Убираем трансформации при фокусе */
     transform: none !important;
     zoom: 1 !important;
   }
