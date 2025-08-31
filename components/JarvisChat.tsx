@@ -710,6 +710,8 @@ export default function JarvisChat() {
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
+                  onFocus={handleInputFocus}
+                  onBlur={handleInputBlur}
                   placeholder={isRecording ? "Говорите..." : "Напишите сообщение..."}
                   className="chat-input"
                   disabled={isRecording}
