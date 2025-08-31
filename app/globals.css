@@ -3571,8 +3571,14 @@ body {
     border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
+  .chat-input-wrapper {
+    gap: 0.5rem;
+    padding: 0.375rem;
+    border-radius: 1.25rem;
+  }
+
   .chat-input {
-    padding: 0.875rem 1.25rem;
+    padding: 0.625rem 0.875rem;
     font-size: 16px; /* Предотвращает зум на мобильных устройствах */
     transform-origin: left top;
     transition: none;
@@ -3584,13 +3590,19 @@ body {
   }
 
   .chat-send-button {
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
 
   .chat-mic-button {
-    width: 2.75rem;
-    height: 2.75rem;
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+
+  .chat-send-icon,
+  .chat-mic-icon {
+    width: 1rem;
+    height: 1rem;
   }
 }
 
