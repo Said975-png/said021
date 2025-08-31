@@ -3475,16 +3475,67 @@ body {
     padding: 1rem 1.5rem;
   }
 
+  .chat-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .chat-avatar-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+
+  .chat-title {
+    font-size: 1.125rem;
+  }
+
+  .chat-status {
+    font-size: 0.8rem;
+  }
+
+  .chat-close-button {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  .chat-close-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+
   .chat-messages {
     padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .message-content {
+    max-width: 80%;
+  }
+
+  .message-text {
+    padding: 0.75rem 1rem;
+    font-size: 0.9rem;
   }
 
   .chat-input-container {
     padding: 1rem 1.5rem;
+    /* Add safe area for mobile devices */
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
   }
 
-  .message-content {
-    max-width: 85%;
+  .chat-input {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9rem;
+  }
+
+  .chat-send-button {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
+  .chat-mic-button {
+    width: 2.75rem;
+    height: 2.75rem;
   }
 }
 
