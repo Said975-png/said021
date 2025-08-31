@@ -9,7 +9,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: visible;
-  /* Предотвращаем зум на мобильных устройствах */
+  /* Предотвращаем зум на мобильных устройств��х */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -3423,7 +3423,7 @@ body {
   stroke-width: 2;
 }
 
-/* К��опка микрофона */
+/* Кнопка микрофона */
 .chat-mic-button {
   width: 3rem;
   height: 3rem;
@@ -3629,6 +3629,7 @@ body {
 
   .chat-messages {
     padding: 1rem;
+    padding-bottom: 6rem; /* Отступ для фиксированного поля ввода */
     gap: 0.875rem;
     /* Обеспечиваем правильное заполнение оставшегося пространства */
     flex: 1;
