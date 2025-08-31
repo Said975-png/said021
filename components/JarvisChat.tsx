@@ -89,6 +89,40 @@ export default function JarvisChat() {
     }, 100)
   }
 
+  // Отслеживание изменения размера для автопрокрутки
+  useEffect(() => {
+    if (!isOpen) return
+
+    const resizeObserver = new ResizeObserver(() => {
+      // Прокручиваем к последнему сообщению при изменении размера
+      setTimeout(() => {
+        scrollToBottom()
+      }, 50)
+    })
+
+    const chatContainer = document.querySelector('.chat-messages')
+    if (chatContainer) {
+      resizeObserver.observe(chatContainer)
+    }
+
+    // Т��кже отслеживаем изменения viewport для мобильных
+    const handleResize = () => {
+      setTimeout(() => {
+        scrollToBottom()
+      }, 300)
+    }
+
+    window.addEventListener('resize', handleResize)
+    // Отслеживаем события показа/скрытия клавиатуры на мобильных
+    window.addEventListener('orientationchange', handleResize)
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('orientationchange', handleResize)
+    }
+  }, [isOpen])
+
   // Инициализация Speech Recognition
   useEffect(() => {
     console.log('Initializing Speech Recognition...')
@@ -404,7 +438,7 @@ export default function JarvisChat() {
     }
 
     setIsSpeaking(false)
-    console.log('🎤 Готовимся к озвучиванию нового ответа')
+    console.log('🎤 Готовимся к озв��чиванию нового ответа')
   }
 
   const speakText = async (text: string) => {
@@ -645,7 +679,7 @@ export default function JarvisChat() {
                 <div className="chat-header-text">
                   <h3 className="chat-title">Джарвис</h3>
                   <p className={`chat-status ${isSpeaking ? 'speaking' : ''}`}>
-                    ИИ-ассистент • {isSpeaking ? 'Говорит медленно...' : 'Онлайн'}
+                    ИИ-асс��стент • {isSpeaking ? 'Говорит медленно...' : 'Онлайн'}
                   </p>
                 </div>
               </div>
