@@ -3526,6 +3526,13 @@ body {
   .chat-input {
     padding: 0.875rem 1.25rem;
     font-size: 16px; /* Предотвращает зум на мобильных устройствах */
+    transform-origin: left top;
+    transition: none;
+  }
+
+  .chat-input:focus {
+    transform: none !important;
+    zoom: 1 !important;
   }
 
   .chat-send-button {
@@ -3571,7 +3578,7 @@ body {
 
   .chat-header {
     padding: 0.875rem 1rem;
-    /* Фиксируем з��головок */
+    /* Фиксируем заголовок */
     position: sticky;
     top: 0;
     z-index: 20;
