@@ -9,6 +9,10 @@
 html {
   scroll-behavior: smooth;
   overflow-x: visible;
+  /* Предотвраща��м зум на мобильных устройствах */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-size-adjust: 100%;
 }
 
 body {
@@ -17,6 +21,31 @@ body {
   color: #ffffff;
   overflow-x: visible;
   overflow-y: visible;
+  /* Предотвращаем зум при касании на iOS */
+  -webkit-touch-callout: none;
+}
+
+/* Предотвращаем зум в полях ввода на мобильных */
+@media screen and (max-width: 768px) {
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="search"],
+  input[type="tel"],
+  input[type="url"],
+  select,
+  textarea {
+    font-size: 16px !important;
+    transform-origin: left top;
+    transition: none;
+  }
+
+  input:focus,
+  textarea:focus,
+  select:focus {
+    transform: none !important;
+    zoom: 1 !important;
+  }
 }
 
 /* Hero Section */
@@ -3144,7 +3173,7 @@ body {
   animation: speaking-pulse 1.5s ease-in-out infinite;
 }
 
-/* Анимация для индикатора говорения */
+/* Анима��ия для индикатора говорения */
 @keyframes speaking-pulse {
   0%, 100% {
     opacity: 0.6;
