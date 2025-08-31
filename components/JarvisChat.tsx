@@ -51,7 +51,22 @@ export default function JarvisChat() {
   const isStreamingRef = useRef<boolean>(false)
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    // Используем requestAnimationFrame для надежной прокрутки
+    requestAnimationFrame(() => {
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+          inline: 'nearest'
+        })
+      }
+
+      // Дополнительная прокрутка для случаев когда scrollIntoView не работает
+      const chatMessages = document.querySelector('.chat-messages')
+      if (chatMessages) {
+        chatMessages.scrollTop = chatMessages.scrollHeight
+      }
+    })
   }
 
   useEffect(() => {
@@ -72,6 +87,56 @@ export default function JarvisChat() {
       }
     }
   }, [isOpen, messages])
+
+  // Обработчик фокуса на поле ввода для мобильных устройств
+  const handleInputFocus = () => {
+    // Прокрутка к последнему сообщению при фокусе (для мобильных)
+    setTimeout(() => {
+      scrollToBottom()
+    }, 300) // Задержка для появления клавиатуры
+  }
+
+  // Обработчик потери фокуса
+  const handleInputBlur = () => {
+    // Прокрутка к последнему сообщению при потере фокуса
+    setTimeout(() => {
+      scrollToBottom()
+    }, 100)
+  }
+
+  // Отслеживание изменения размера для автопрокрутки
+  useEffect(() => {
+    if (!isOpen) return
+
+    const resizeObserver = new ResizeObserver(() => {
+      // Прокручиваем к последнему сообщению при изменении размера
+      setTimeout(() => {
+        scrollToBottom()
+      }, 50)
+    })
+
+    const chatContainer = document.querySelector('.chat-messages')
+    if (chatContainer) {
+      resizeObserver.observe(chatContainer)
+    }
+
+    // Также отслеживаем изменения viewport для мобильных
+    const handleResize = () => {
+      setTimeout(() => {
+        scrollToBottom()
+      }, 300)
+    }
+
+    window.addEventListener('resize', handleResize)
+    // Отслеживаем события показа/скрытия клавиатуры на мобильных
+    window.addEventListener('orientationchange', handleResize)
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', handleResize)
+      window.removeEventListener('orientationchange', handleResize)
+    }
+  }, [isOpen])
 
   // Инициализация Speech Recognition
   useEffect(() => {
@@ -149,7 +214,7 @@ export default function JarvisChat() {
             break
           case 'not-allowed':
             console.log('Microphone access denied')
-            alert('Нужно разрешить доступ к микрофону в настройках браузера')
+            alert('Нужно разрешит�� доступ к микрофону в настройках браузера')
             break
           case 'no-speech':
             console.log('No speech detected - continuing to listen')
@@ -197,7 +262,7 @@ export default function JarvisChat() {
                 recognition.start()
               } catch (error) {
                 console.log('Failed to restart recognition:', error)
-                // При ошибке перезапуска останавливаем запись
+                // ��ри ошибке перезапуска останавливаем запись
                 setIsRecording(false)
                 isRecordingRef.current = false
                 setIsListening(false)
@@ -694,6 +759,8 @@ export default function JarvisChat() {
                   value={inputMessage}
                   onChange={(e) => setInputMessage(e.target.value)}
                   onKeyPress={handleKeyPress}
+                  onFocus={handleInputFocus}
+                  onBlur={handleInputBlur}
                   placeholder={isRecording ? "Говорите..." : "Напишите сообщение..."}
                   className="chat-input"
                   disabled={isRecording}
