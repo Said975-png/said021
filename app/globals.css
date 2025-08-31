@@ -9,7 +9,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: visible;
-  /* Предотвраща��м зум на мобильных устройствах */
+  /* Предотвращаем зум на мобильных устройствах */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -3173,7 +3173,7 @@ body {
   animation: speaking-pulse 1.5s ease-in-out infinite;
 }
 
-/* Анима��ия для индикатора говорения */
+/* Анимация для индикатора говорения */
 @keyframes speaking-pulse {
   0%, 100% {
     opacity: 0.6;
@@ -3423,7 +3423,7 @@ body {
   stroke-width: 2;
 }
 
-/* Кнопка микрофона */
+/* К��опка микрофона */
 .chat-mic-button {
   width: 3rem;
   height: 3rem;
@@ -3669,9 +3669,11 @@ body {
     padding: 0.875rem 1rem;
     /* Добавляем безопасную зону для мобильных устройств */
     padding-bottom: max(0.875rem, env(safe-area-inset-bottom));
-    /* Фиксируем панель ввода внизу */
-    position: sticky;
+    /* Фиксируем панель ввода внизу экрана */
+    position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     z-index: 20;
     background: rgba(0, 0, 0, 0.95);
     backdrop-filter: blur(10px);
