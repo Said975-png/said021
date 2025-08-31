@@ -51,7 +51,22 @@ export default function JarvisChat() {
   const isStreamingRef = useRef<boolean>(false)
 
   const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    // Используем requestAnimationFrame для надежной прокрутки
+    requestAnimationFrame(() => {
+      if (messagesEndRef.current) {
+        messagesEndRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+          inline: 'nearest'
+        })
+      }
+
+      // Дополнительная прокрутка для случаев когда scrollIntoView не работает
+      const chatMessages = document.querySelector('.chat-messages')
+      if (chatMessages) {
+        chatMessages.scrollTop = chatMessages.scrollHeight
+      }
+    })
   }
 
   useEffect(() => {
@@ -105,7 +120,7 @@ export default function JarvisChat() {
       resizeObserver.observe(chatContainer)
     }
 
-    // Т��кже отслеживаем изменения viewport для мобильных
+    // Также отслеживаем изменения viewport для мобильных
     const handleResize = () => {
       setTimeout(() => {
         scrollToBottom()
@@ -247,7 +262,7 @@ export default function JarvisChat() {
                 recognition.start()
               } catch (error) {
                 console.log('Failed to restart recognition:', error)
-                // При ошибке перезапуска останавливаем запись
+                // ��ри ошибке перезапуска останавливаем запись
                 setIsRecording(false)
                 isRecordingRef.current = false
                 setIsListening(false)
@@ -438,7 +453,7 @@ export default function JarvisChat() {
     }
 
     setIsSpeaking(false)
-    console.log('🎤 Готовимся к озв��чиванию нового ответа')
+    console.log('🎤 Готовимся к озвучиванию нового ответа')
   }
 
   const speakText = async (text: string) => {
@@ -679,7 +694,7 @@ export default function JarvisChat() {
                 <div className="chat-header-text">
                   <h3 className="chat-title">Джарвис</h3>
                   <p className={`chat-status ${isSpeaking ? 'speaking' : ''}`}>
-                    ИИ-асс��стент • {isSpeaking ? 'Говорит медленно...' : 'Онлайн'}
+                    ИИ-ассистент • {isSpeaking ? 'Говорит медленно...' : 'Онлайн'}
                   </p>
                 </div>
               </div>
