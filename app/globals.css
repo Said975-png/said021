@@ -3525,7 +3525,7 @@ body {
 
   .chat-input {
     padding: 0.875rem 1.25rem;
-    font-size: 0.9rem;
+    font-size: 16px; /* Предотвращает зум на мобильных устройствах */
   }
 
   .chat-send-button {
