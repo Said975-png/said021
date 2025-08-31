@@ -9,7 +9,7 @@
 html {
   scroll-behavior: smooth;
   overflow-x: visible;
-  /* Предотвращаем зум на мобильных устройств��х */
+  /* Предотвращаем зум на мобильных устройствах */
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -3550,6 +3550,15 @@ body {
     padding: 1rem 1.5rem;
     /* Add safe area for mobile devices */
     padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    /* Фиксируем панель ввода внизу экрана */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
   }
 
   .chat-input {
@@ -3631,7 +3640,7 @@ body {
     padding: 1rem;
     padding-bottom: 6rem; /* Отступ для фиксированного поля ввода */
     gap: 0.875rem;
-    /* Обеспечиваем правильное заполнение оставшегося пространства */
+    /* Обеспеч��ваем правильное заполнение оставшегося пространства */
     flex: 1;
     min-height: 0;
     /* Всегда прокручиваем к низу при изменении размера */
