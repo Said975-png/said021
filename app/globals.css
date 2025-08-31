@@ -3213,6 +3213,7 @@ body {
 .chat-messages {
   flex: 1;
   padding: 2rem;
+  padding-bottom: 8rem; /* Отступ для фиксированного поля ��вода */
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -3568,7 +3569,7 @@ body {
 
   .chat-input {
     padding: 0.875rem 1.25rem;
-    font-size: 16px; /* Предотвращает зум на мобильных устройствах */
+    font-size: 16px; /* Предотвращает зум на мобильны�� устройствах */
     transform-origin: left top;
     transition: none;
   }
